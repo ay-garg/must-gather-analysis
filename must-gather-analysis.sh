@@ -98,8 +98,6 @@ function clusterversion {
     else
         echo -e "***${bold}clusterversions.yaml not found***\n${normal}"
     fi
-    # omg get clusterversion     \\ Need to work
-    # echo -e "\n"
 }
 
 echo -e "\n${bold}${RED}-------clusterversion details-------\n${normal}"
