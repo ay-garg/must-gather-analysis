@@ -17,7 +17,7 @@ OpenShift 4 must-gather analysis script to verify cluster health by fetching the
 ## Prerequisites
 ```
 - Cluster must-gather
-- *jq* package installed
+- **jq** package installed
 ```
 
 ## How to use the shell script?
