@@ -17,10 +17,14 @@ OpenShift 4 must-gather analysis script to verify cluster health by fetching the
 ## Prerequisites
 ```
 - Cluster must-gather
-- "jq" package installed
+- "omg" and "jq" packages installed
 ```
 
 ## How to use the shell script?
 ```
-# sh must-gather-analysis.sh <path-to-must-gather-dir>
+// The below command download the shell script at path "/usr/local/bin/must-gather-analysis", sets the execute permission and reloads the current shell.
+$ sudo curl -o /usr/local/bin/must-gather-analysis https://raw.githubusercontent.com/ayush-garg-github/must-gather-analysis/main/must-gather-analysis.sh && sudo chmod +x /usr/local/bin/must-gather-analysis && $SHELL
+
+// Shell script can be executed by running "must-gather-analysis" for the specified must-gather.
+$ must-gather-analysis <path-to-must-gather-dir>
 ```
