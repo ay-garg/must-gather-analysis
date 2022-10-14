@@ -21,8 +21,24 @@ function validate {
 		echo "No must-gather supplied!"
 		echo "USAGE: $0 <must-gather-directory>"
 		exit 1
+	elif [ ${ARGS} -gt 1 ]
+	then
+		echo "Only must-gather should be provided!"
+		echo "USAGE: $0 <must-gather-directory>"
+		exit 1
+	elif ! [ -x "$(command -v omg)" ]
+	then
+		echo 'Error: omg command not found!' >&2
+		echo 'Visit "https://pypi.org/project/o-must-gather" for install instructions.'
+		exit 1
+	elif ! [ -x "$(command -v jq)" ]
+	then
+		echo 'Error: jq command not found!' >&2
+		echo 'Visit "https://stedolan.github.io/jq/download" for install instructions.'
+		exit 1
 	else
 		rm -f ~/.omgconfig && omg use ${MUSTGATHER}
+		echo -e "\n"
 	fi
 }
 
@@ -153,7 +169,7 @@ function pods {
 }
 
 function title {
-	echo -e "${BOLD}${RED}----------${1}----------\n${REGULAR}"
+	echo -e "\n${BOLD}${RED}----------${1}----------\n${REGULAR}"
 }
 
 function main {
