@@ -36,6 +36,12 @@ function validate {
 		echo 'Error: jq command not found!' >&2
 		echo 'Visit "https://stedolan.github.io/jq/download" for install instructions.'
 		exit 1
+	elif ! [ -x "$(command -v column)" ]
+	then
+		echo 'Error: column command not found!' >&2
+		echo '"util-linux" package needs to be installed for Red Hat based Linux Distributions.'
+		echo '"bsdmainutils" package needs to be installed for Debian based Linux Distributions.'
+		exit 1
 	else
 		rm -f ~/.omgconfig && omg use ${MUSTGATHER}
 		echo -e "\n"
