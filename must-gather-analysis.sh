@@ -168,6 +168,20 @@ function pods {
 	omg get pod -o wide -A | grep -Ev 'Running|Succeeded'
 }
 
+### fetch kube-apiserver pod logs
+function KubeApiserver {
+	MasterNodes=$(cat $MUSTGATHER/*/cluster-scoped-resources/core/nodes/* | grep -i "node-role.kubernetes.io/master: """ -A200 | awk '/resourceVersion/{print a}{a=$0}' | awk '{ print "kube-apiserver-" $2 }' | tr '\n' ' ')
+	for i in $(echo $MasterNodes); do
+		if [ -f $MUSTGATHER/*/namespaces/openshift-kube-apiserver/pods/$i/kube-apiserver/kube-apiserver/logs/current.log ];
+		then
+			echo -e "\n${PURPLE}***$i***\n${REGULAR}"
+			cat $MUSTGATHER/*/namespaces/openshift-kube-apiserver/pods/$i/kube-apiserver/kube-apiserver/logs/current.log | tail -n 10
+		else
+			echo -e "***${BOLD}$i pod logs not found***\n${REGULAR}"
+		fi
+	done
+}
+
 function title {
 	echo -e "\n${BOLD}${RED}----------${1}----------\n${REGULAR}"
 }
@@ -214,6 +228,9 @@ function main {
 
 	title "Pods Status"
 	pods
+
+	title "kube-apiserver pod logs"
+	KubeApiserver
 }
 
 main
