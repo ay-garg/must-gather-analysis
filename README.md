@@ -1,4 +1,4 @@
-# must-gater-analysis
+# must-gather-analysis
 OpenShift 4 must-gather analysis script to verify cluster health by fetching the important data.
 
 ## The `must-gather-analysis` shell script fetches following data from the must-gather.
