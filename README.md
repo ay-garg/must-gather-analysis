@@ -18,6 +18,7 @@ OpenShift 4 must-gather analysis script to verify cluster health by fetching the
 ```
 - Cluster must-gather
 - "omg" and "jq" packages installed
+- "util-linux" and "bsdmainutils" packages installed for Red Hat and Debian based Linux Distributions respectively.
 ```
 
 ## How to use the shell script?
