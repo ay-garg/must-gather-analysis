@@ -226,7 +226,7 @@ function main {
 	title "Machineset Status"
 	machine
 
-	title "Pods Status"
+	title "Failing Pods"
 	pods
 
 	title "kube-apiserver pod logs"
