@@ -12,7 +12,8 @@ OpenShift 4 must-gather analysis script to verify cluster health by fetching the
 - MCP
 - Machines
 - Machineset
-- Pods not in "Running" state.
+- Pods not in "Running" state
+- control plane pod logs
 
 ## Prerequisites
 ```
