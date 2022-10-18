@@ -49,7 +49,7 @@ function infrastructure {
 	then
 		cat $Infrastructures | sed -n '/uid/,/kind/{ //!p }'
 	else
-		echo -e "***${BOLD}infrastructures.yaml not found***\n${REGULAR}"
+		echo -e "\n***${BOLD}infrastructures.yaml not found***\n${REGULAR}"
 	fi
 }
 
@@ -60,7 +60,7 @@ function etcdEndpointHealth {
 	then
 		cat $ETCDEndpointHealth | jq -r '(["ENDPOINT","HEALTH","TOOK"] | (.,map(length*"-"))), (.[] | [.endpoint, .health, .took]) | @tsv' | column -t
 	else
-		echo -e "***${BOLD}endpoint_health.json not found***\n${REGULAR}"
+		echo -e "\n***${BOLD}endpoint_health.json not found***\n${REGULAR}"
 	fi
 }
 
@@ -71,7 +71,7 @@ function etcdEndpointStatus {
 	then
 		cat $ETCDEndpointStatus | jq -r '(["ENDPOINT","VERSION","DB-SIZE-IN-BYTES", "RAFT-TERM", "RAFT-INDEX", "RAFT-APPLIED-INDEX"] | (.,map(length*"-"))), (.[] | [.Endpoint, .Status.version, .Status.dbSize, .Status.header.raft_term, .Status.raftIndex, .Status.raftAppliedIndex]) | @tsv' | column -t
 	else
-		echo -e "***${BOLD}endpoint_status.json not found***\n${REGULAR}"
+		echo -e "\n***${BOLD}endpoint_status.json not found***\n${REGULAR}"
 	fi
 }
 
@@ -82,7 +82,7 @@ function etcdMemberList {
 	then
 		cat $ETCDMemberList | jq -r '(["NAME","PEER-ADDRS","CLIENT-ADDRS"] | (.,map(length*"-"))), (.members[] | [.name, .peerURLs[], .clientURLs[]]) | @tsv' | column -t
 	else
-		echo -e "***${BOLD}member_list.json not found***\n${REGULAR}"
+		echo -e "\n***${BOLD}member_list.json not found***\n${REGULAR}"
 	fi
 }
 
@@ -101,7 +101,7 @@ function clusterversion {
 		echo -e "\n\n${PURPLE}***ClusterVersion history***\n${REGULAR}"
 		cat $ClusterVersion | sed -n '/completionTime/,/observedGeneration/{ /observedGeneration/!p }'
 	else
-		echo -e "***${BOLD}clusterversions.yaml not found***\n${REGULAR}"
+		echo -e "\n***${BOLD}clusterversions.yaml not found***\n${REGULAR}"
 	fi
 }
 
@@ -112,7 +112,7 @@ function InstallConfigYAML {
 	then
 		cat $InstallConfig | sed -n '/install-config/{p; :loop n; p; /kind/q; b loop}' | grep -v kind
 	else
-		echo -e "***${BOLD}install-config.yaml not found***\n${REGULAR}"
+		echo -e "\n***${BOLD}install-config.yaml not found***\n${REGULAR}"
 	fi
 
 # loop in GNU sed: sed -n '/trigger/{p; :loop n; p; /trigger/q; b loop}'
@@ -133,7 +133,7 @@ function ClusterWideProxy {
 	then
 		cat $Proxy | sed -n '/uid/,/kind/{ //!p }'
 	else
-		echo -e "$***{BOLD}cluster-wide proxy details not found***\n${REGULAR}"
+		echo -e "\n***${BOLD}cluster-wide proxy details not found***\n${REGULAR}"
 	fi
 }
 
@@ -177,7 +177,7 @@ function KubeApiserver {
 			echo -e "\n${PURPLE}***$i***\n${REGULAR}"
 			cat $MUSTGATHER/*/namespaces/openshift-kube-apiserver/pods/$i/kube-apiserver/kube-apiserver/logs/current.log | tail -n 10
 		else
-			echo -e "***${BOLD}$i pod logs not found***\n${REGULAR}"
+			echo -e "\n***${BOLD}$i pod logs not found***\n${REGULAR}"
 		fi
 	done
 }
