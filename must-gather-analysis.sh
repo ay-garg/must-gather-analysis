@@ -174,6 +174,11 @@ function pods {
 	omg get pod -o wide -A | grep -Ev 'Running|Succeeded'
 }
 
+### pod restart above 10
+function podRestart {
+	omg get pod -A | awk '$5>10'
+}
+
 ### fetch kube-apiserver pod logs
 function KubeApiserver {
 	MasterNodes=$(cat $MUSTGATHER/*/cluster-scoped-resources/core/nodes/* | grep -i "node-role.kubernetes.io/master: """ -A200 | awk '/resourceVersion/{print a}{a=$0}' | awk '{ print "kube-apiserver-" $2 }' | tr '\n' ' ')
@@ -262,6 +267,9 @@ function main {
 
 	title "Failing Pods"
 	pods
+	
+	title "Pod restart above 10"
+	podRestart
 
 	title "kube-apiserver pod logs"
 	KubeApiserver
