@@ -164,7 +164,7 @@ function machine {
 }
 
 ### machineset status
-function machine {
+function machineset {
 	omg get machineset -n openshift-machine-api
 }
 
@@ -263,7 +263,7 @@ function main {
 	machine
 
 	title "Machineset Status"
-	machine
+	machineset
 
 	title "Failing Pods"
 	pods
