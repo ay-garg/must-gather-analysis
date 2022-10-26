@@ -33,7 +33,7 @@ $ must-gather-analysis <path-to-must-gather-dir>
 
 // All the sensitive data is masked in the below script output for security reasons.
 $ must-gather-analysis must-gather/must-gather.local.6xxxxxxxxxxxx/
-Using:  /home/root/test/must-gather/must-gather.local.6xxxxxxxxxxxx/quay-io-openshift-release-dev-ocp-v4-0-art-dev-sha256-eb235cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Using:  /home/test/must-gather/must-gather.local.6xxxxxxxxxxxx/quay-io-openshift-release-dev-ocp-v4-0-art-dev-sha256-eb235cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 
