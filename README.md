@@ -31,7 +31,7 @@ $ sudo curl -o /usr/local/bin/must-gather-analysis https://raw.githubusercontent
 // Shell script can be executed by running "must-gather-analysis" for the specified must-gather.
 $ must-gather-analysis <path-to-must-gather-dir>
 
-
+// All the sensitive data is masked in the below script output for security reasons.
 $ must-gather-analysis must-gather/must-gather.local.6xxxxxxxxxxxx/
 Using:  /home/root/test/must-gather/must-gather.local.6xxxxxxxxxxxx/quay-io-openshift-release-dev-ocp-v4-0-art-dev-sha256-eb235cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
