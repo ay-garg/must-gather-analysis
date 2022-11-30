@@ -153,6 +153,14 @@ function nodes {
 	omg get nodes -o wide
 }
 
+### Nodes machineconfiguration
+function machineconfiguration {
+	Nodes=$MUSTGATHER/*/cluster-scoped-resources/core/nodes/
+	for i in $Nodes/*.yaml; do
+		cat $i | grep "kubernetes.io/hostname\|machineconfiguration.openshift.io/currentConfig\|machineconfiguration.openshift.io/desiredConfig" | head -n 3 | tr -s ' ' && echo -e ""
+	done
+}
+
 ### MCP status
 function mcp {
 	omg get mcp
@@ -255,6 +263,9 @@ function main {
 
 	title "Nodes Status"
 	nodes
+
+	title "Nodes machineconfiguration"
+	machineconfiguration
 
 	title "MCP Status"
 	mcp
