@@ -75,7 +75,7 @@ function etcdEndpointStatus {
 	ETCDEndpointStatus=$MUSTGATHER/*/etcd_info/endpoint_status.json
 	if [ -f $ETCDEndpointStatus ];
 	then
-		cat $ETCDEndpointStatus | jq -r '(["ENDPOINT","VERSION","DB-SIZE-IN-BYTES", "RAFT-TERM", "RAFT-INDEX", "RAFT-APPLIED-INDEX"] | (.,map(length*"-"))), (.[] | [.Endpoint, .Status.version, .Status.dbSize, .Status.header.raft_term, .Status.raftIndex, .Status.raftAppliedIndex]) | @tsv' | column -t
+		cat $ETCDEndpointStatus | jq -r '(["ENDPOINT","MEMBER-ID","LEADER-ID","VERSION","DB-SIZE-IN-BYTES", "RAFT-TERM", "RAFT-INDEX", "RAFT-APPLIED-INDEX"] | (.,map(length*"-"))), (.[] | [.Endpoint, .Status.header.member_id, .Status.leader, .Status.version, .Status.dbSize, .Status.header.raft_term, .Status.raftIndex, .Status.raftAppliedIndex]) | @tsv' | column -t
 	else
 		echo -e "\n***${BOLD}endpoint_status.json not found***\n${REGULAR}"
 	fi
